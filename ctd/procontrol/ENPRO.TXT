@@ -1,0 +1,26 @@
+@ ------------------------------------------------------------------------ 
+@ ------------------------------------------------------------------------ 
+@
+@ Configuration for SBEDataProcessing-Win32 CTD Windows processing. This file is called by a batch file (ENpro.bat).
+@
+@ %1 - input file directory without final backslash
+@ %2 - input file filename not including extension, wild cards not ok
+@ %3 - Output file directory without final backslash
+@ %4 - .psa file directory without final backslash
+@
+@ >>>> Important! Do not use tab key, only spaces. <<<<
+@
+@
+@ Note: The cast-specific .xmlcon file is specified with the /c parameter. Use /c for DatCnv, Derive and BottleSum.
+@
+@ ------------------------------------------------------------------------
+DatCnv    /i%1\%2.hex  /o%3  /f%2  /p%4\EN_DatCnv.psa	/xdatcnv:pump	/c%1\%2.xmlcon  
+Filter    /i%3\%2.cnv  /o%3  /f%2  /p%4\EN_Filter.psa  
+AlignCtd  /i%3\%2.cnv  /o%3  /f%2  /p%4\EN_AlignCTD.psa  
+CellTM    /i%3\%2.cnv  /o%3  /f%2  /p%4\EN_CellTM.psa
+@LoopEdit  /i%3\%2.cnv  /o%3  /f%2  /p%4\EN_LoopEdit.psa          
+Derive    /i%3\%2.cnv  /o%3  /f%2  /p%4\EN_Derive.psa			/c%1\%2.xmlcon 
+BinAvg    /i%3\%2.cnv  /o%3  /f%2  /p%4\EN_BinAvg.psa     
+Seaplot   /i%3\%2_avg.cnv  /o%3  /f%2  /p%4\EN_SeaPlot_TTSS.psa
+@BottleSum /i%3\%2.ros  /o%3  /f%2  /p%4\EN_BottleSum.psa		/c%1\%2.xmlcon
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PressureSensor SensorID="45" SB_ConfigCTD_FileVersion="7.23.0.2" >
+  <SerialNumber>0444</SerialNumber>
+  <CalibrationDate>21-Mar-24</CalibrationDate>
+  <C1>-5.378517e+004</C1>
+  <C2>-3.498580e-001</C2>
+  <C3>1.648580e-002</C3>
+  <D1>4.036100e-002</D1>
+  <D2>0.000000e+000</D2>
+  <T1>2.984744e+001</T1>
+  <T2>-3.538190e-004</T2>
+  <T3>3.972770e-006</T3>
+  <T4>2.922330e-009</T4>
+  <Slope>0.99991872</Slope>
+  <Offset>0.09107</Offset>
+  <T5>0.000000e+000</T5>
+  <AD590M>1.125800e-002</AD590M>
+  <AD590B>-8.763490e+000</AD590B>
+</PressureSensor>

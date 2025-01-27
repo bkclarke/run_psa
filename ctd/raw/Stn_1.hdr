@@ -1,0 +1,23 @@
+* Sea-Bird SBE 19plus V2 Data File:
+* FileName = D:\ctd\raw\Stn 1.hdr
+* Software Version Seasave V 7.26.7.121
+* Temperature SN = 8082
+* Conductivity SN = 8082
+* System UpLoad Time = Apr 22 2024 07:07:14
+* NMEA Latitude = 43 33.98 N
+* NMEA Longitude = 069 46.04 W
+* NMEA UTC (Time) = Apr 22 2024  07:07:13
+* Store Lat/Lon Data = Append to Every Scan
+** Ship: R/V Endeavor 
+** Cruise: EN714 
+** Principal Investigator: Vivien Taylor 
+** Chief Scientist: Vivien Taylor 
+** Project: Penobscot Bay Hg 
+** Cruise Start Date: 21 Apr 2024 
+** Ports: GSO  to GSO, URI, Narragansett, Rhode Island 
+** Station:  1
+** Bottom Depth (m): 92
+** Operator:  vft
+* Real-Time Sample Interval = 0.2500 seconds
+* System UTC = Apr 22 2024 07:07:14
+*END*

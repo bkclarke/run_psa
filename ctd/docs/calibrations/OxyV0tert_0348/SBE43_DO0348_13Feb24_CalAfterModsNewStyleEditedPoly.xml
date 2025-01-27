@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UserPolynomialSensor SensorID="61" SB_ConfigCTD_FileVersion="7.26.4.0" >
+  <SerialNumber>0348</SerialNumber>
+  <CalibrationDate></CalibrationDate>
+  <SensorName>oxytertiary</SensorName>
+  <A0>0.00000000</A0>
+  <A1>0.00000000</A1>
+  <A2>0.00000000</A2>
+  <A3>0.00000000</A3>
+</UserPolynomialSensor>

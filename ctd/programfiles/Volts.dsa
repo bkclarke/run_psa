@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DisplaySetup >
+  <Display Type="1" >
+    <FixedViewData >
+      <SelCalcData Size="8" >
+        <SelCalcRow index="0" >
+          <CalcID value="89" />
+          <Calc UnitID="63" Ordinal="0" >
+            <FullName value="Voltage 0" />
+          </Calc>
+          <DecimalDigits value="5" />
+          <Fore value="0" />
+          <Back value="12632256" />
+        </SelCalcRow>
+        <SelCalcRow index="1" >
+          <CalcID value="89" />
+          <Calc UnitID="63" Ordinal="1" >
+            <FullName value="Voltage 1" />
+          </Calc>
+          <DecimalDigits value="5" />
+          <Fore value="0" />
+          <Back value="65408" />
+        </SelCalcRow>
+        <SelCalcRow index="2" >
+          <CalcID value="89" />
+          <Calc UnitID="63" Ordinal="2" >
+            <FullName value="Voltage 2" />
+          </Calc>
+          <DecimalDigits value="5" />
+          <Fore value="0" />
+          <Back value="33023" />
+        </SelCalcRow>
+        <SelCalcRow index="3" >
+          <CalcID value="89" />
+          <Calc UnitID="63" Ordinal="3" >
+            <FullName value="Voltage 3" />
+          </Calc>
+          <DecimalDigits value="5" />
+          <Fore value="0" />
+          <Back value="65535" />
+        </SelCalcRow>
+        <SelCalcRow index="4" >
+          <CalcID value="89" />
+          <Calc UnitID="63" Ordinal="4" >
+            <FullName value="Voltage 4" />
+          </Calc>
+          <DecimalDigits value="5" />
+          <Fore value="0" />
+          <Back value="16744703" />
+        </SelCalcRow>
+        <SelCalcRow index="5" >
+          <CalcID value="89" />
+          <Calc UnitID="63" Ordinal="5" >
+            <FullName value="Voltage 5" />
+          </Calc>
+          <DecimalDigits value="5" />
+          <Fore value="0" />
+          <Back value="16711808" />
+        </SelCalcRow>
+        <SelCalcRow index="6" >
+          <CalcID value="89" />
+          <Calc UnitID="63" Ordinal="6" >
+            <FullName value="Voltage 6" />
+          </Calc>
+          <DecimalDigits value="5" />
+          <Fore value="0" />
+          <Back value="8421376" />
+        </SelCalcRow>
+        <SelCalcRow index="7" >
+          <CalcID value="89" />
+          <Calc UnitID="63" Ordinal="7" >
+            <FullName value="Voltage 7" />
+          </Calc>
+          <DecimalDigits value="5" />
+          <Fore value="0" />
+          <Back value="16777215" />
+        </SelCalcRow>
+        <Position left="1621" top="706" right="1943" bottom="1034" />
+        <WindowPlacement >
+          <length value="44" />
+          <flags value="0" />
+          <showCmd value="1" />
+          <ptMinPosition x="-1" y="-1" />
+          <ptMaxPosition x="-1" y="-1" />
+          <rcNormalPosition left="1621" top="706" right="1943" bottom="1036" />
+        </WindowPlacement>
+        <SecBetweenUpdate value="1.000000" />
+        <PixelX value="6" />
+        <PixelY value="13" />
+        <MaxExtent value="30" />
+      </SelCalcData>
+      <TwoColumns value="0" />
+      <UseShortNames value="0" />
+      <FontSize value="2" />
+      <Sizing >
+        <RowHeight>34</RowHeight>
+        <TopHeaderHeight>16</TopHeaderHeight>
+        <SideHeaderWidth>14</SideHeaderWidth>
+        <HeaderColumn1Width>140</HeaderColumn1Width>
+        <DataColumn1Width>151</DataColumn1Width>
+      </Sizing>
+    </FixedViewData>
+  </Display>
+</DisplaySetup>
