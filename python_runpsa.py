@@ -129,16 +129,13 @@ def open_in_sbedataprocessing(psa_dir, psa_file, executable_name):
         messagebox.showerror("Error", f"The PSA file '{psa_file}' does not exist.")
         return
 
-    # Wrap executable path and PSA file path in quotes to handle spaces
-    psa_file_path = f'"{psa_file_path}"'
-
     # Log the command to check for issues
     print(f"Running: {executable_name} {psa_file_path}")
 
     # Launch the executable with the PSA file as an argument
     try:
-        result = subprocess.run([executable_name, psa_file_path], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
-        print(result)
+        result = subprocess.run([executable_name, '/p', psa_file_path], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
+        print('RUN SUBPROCESS', result)
         print("Output:", result.stdout)
         print("Error:", result.stderr)
     except FileNotFoundError:
@@ -165,9 +162,18 @@ def load_psa_files(psa_dir):
         messagebox.showwarning("No Files Found", "No .psa files found in the selected directory.")
         return
 
-    # Create a frame for each PSA file
-    for idx, psa_file in enumerate(psa_files):
-        psa_frame = tk.Frame(psa_files_frame)
+    # Update the scrollable area with the PSA file entries
+    update_psa_entries(psa_files)  # Pass the list of psa_files to the update_psa_entries function
+
+
+def update_psa_entries(psa_files):
+    # Clear the current PSA file entries
+    for widget in psa_entries_frame.winfo_children():
+        widget.destroy()
+
+    # Create a row for each PSA file loaded dynamically
+    for idx, psa_file in enumerate(psa_files):  # Use the psa_files passed to this function
+        psa_frame = tk.Frame(psa_entries_frame)  # Add each file's row to the scrollable frame
         psa_frame.grid(row=idx, sticky="ew", pady=5)
 
         # PSA file name label
@@ -188,11 +194,15 @@ def load_psa_files(psa_dir):
         select_checkbox.grid(row=0, column=3, padx=5)
 
         # Edit PSA Button to open the file in SBEDataprocessing
-        edit_button = ttk.Button(psa_frame, text="Edit PSA", command=lambda psa_file=psa_file, psa_dir=psa_dir, executable_dropdown=executable_dropdown: open_in_sbedataprocessing(psa_dir, psa_file, executable_dropdown.get()))
+        edit_button = ttk.Button(psa_frame, text="Edit PSA", command=lambda psa_file=psa_file, psa_dir=select_psa_directory, executable_dropdown=executable_dropdown: open_in_sbedataprocessing(psa_dir, psa_file, executable_dropdown.get()))
         edit_button.grid(row=0, column=4, padx=5)
 
         # Store the widgets in a tuple for later use
-        psa_frames.append((psa_frame, psa_file, executable_dropdown, order_entry, select_var, select_checkbox, edit_button))  # New line
+        psa_frames.append((psa_frame, psa_file, executable_dropdown, order_entry, select_var, select_checkbox, edit_button))
+
+    # Update the scrollable region of the canvas based on the number of entries
+    psa_entries_frame.update_idletasks()
+    canvas.config(scrollregion=canvas.bbox("all"))
 
 # Function to load a configuration file
 def load_config():
@@ -466,7 +476,7 @@ root.grid_rowconfigure(5, weight=0)
 root.grid_rowconfigure(6, weight=0)
 root.grid_columnconfigure(0, weight=1)
 root.grid_columnconfigure(1, weight=1)
-root.grid_columnconfigure(2, weight=0)
+root.grid_columnconfigure(2, weight=1)
 
 # Variables
 raw_file_var = tk.StringVar()
@@ -493,9 +503,30 @@ tk.Label(root, text="Select Output File Directory:").grid(row=3, column=0, padx=
 tk.Entry(root, textvariable=output_file_var, width=50).grid(row=3, column=1, padx=10, pady=5, sticky="ew")
 ttk.Button(root, text="Browse", command=lambda: output_file_var.set(filedialog.askdirectory(title="Select Output Directory"))).grid(row=3, column=2, padx=10, pady=5)
 
-# Frame to hold PSA entries
+# Frame for PSA files with scrolling functionality
 psa_files_frame = tk.Frame(root)
 psa_files_frame.grid(row=4, column=0, columnspan=3, padx=10, pady=5, sticky="ew")
+
+# Create a canvas to enable scrolling
+canvas = tk.Canvas(psa_files_frame)
+canvas.grid(row=0, column=0, sticky="nsew")
+
+# Create a vertical scrollbar and attach it to the canvas
+scrollbar = ttk.Scrollbar(psa_files_frame, orient="vertical", command=canvas.yview)
+scrollbar.grid(row=0, column=1, sticky="ns")
+
+# Configure the canvas to use the scrollbar
+canvas.configure(yscrollcommand=scrollbar.set)
+
+# Create a frame inside the canvas to hold the PSA file entries
+psa_entries_frame = tk.Frame(canvas)
+
+# Add this frame to the canvas window (a special canvas feature)
+canvas.create_window((0, 0), window=psa_entries_frame, anchor="nw")
+
+# Make the canvas expandable so that it fills the available space
+psa_files_frame.grid_rowconfigure(0, weight=1)
+psa_files_frame.grid_columnconfigure(0, weight=1)
 
 # Process Data Button
 ttk.Button(root, text="Process Data", command=process_data).grid(row=5, column=1, padx=10, pady=20)
@@ -508,21 +539,7 @@ ttk.Button(root, text="Load Configuration", command=load_config).grid(row=6, col
 
 sv_ttk.set_theme("dark")
 
-# Ensure the console output is redirected if it isn't showing up
-class ConsoleRedirector:
-    def __init__(self, stream):
-        self.stream = stream
-
-    def write(self, data):
-        self.stream.write(data)
-
-    def flush(self):
-        self.stream.flush()
-
 def start_application():
-    # Redirect sys.stdout to ensure print statements appear in the console
-    sys.stdout = ConsoleRedirector(sys.__stdout__)
-
     print('Starting application...')
     load_last_used_config()  # Try loading the last used config on startup
 
@@ -537,5 +554,6 @@ if __name__ == "__main__":
         start_application()  # Ensure the application starts
     except Exception as e:
         print(f"Error starting application: {e}")
+
 
 
